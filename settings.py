@@ -1,4 +1,4 @@
-class Settings():
+class Settings:
 
     def __init__(self):
         self.screenwidth = 1200
@@ -6,3 +6,4 @@ class Settings():
         self.bg_color = (0, 0, 0)
         # self.ship_width = 150
         # self.ship_height = 150
+        self.ship_speed_factor = 1.5
