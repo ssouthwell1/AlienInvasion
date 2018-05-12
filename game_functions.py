@@ -39,6 +39,7 @@ def check_keydown_events(event, ai_settings, screen, ship, bullets):
         if len(bullets) < ai_settings.bullets_allowed:
             print("Firing new bullet")
             new_bullet = Bullet(ai_settings, screen, ship)
+            new_bullet.sound_shoot.play()
             bullets.add(new_bullet)
 
 

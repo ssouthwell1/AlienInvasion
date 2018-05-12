@@ -1,3 +1,6 @@
+import pygame
+
+
 class Settings:
     YELLOW = (241, 255, 0)
 
@@ -10,9 +13,16 @@ class Settings:
         self.ship_speed_factor = 10
 
         # Bullet settings
-        self.bullet_speed_factor = 20
+        self.bullet_speed_factor = 25
         self.bullet_width = 3
         self.bullet_height = 15
         # self.bullet_color = 241, 255, 0
         self.bullet_color = 237, 28, 36
         self.bullets_allowed = 2
+
+        # Sound settings
+        # refactor later self.sounds = ["shoot", "invaderkilled" "explosion"]
+        # put them in a list and format the file type
+        self.sound_shoot = pygame.mixer.Sound('sounds/shoot.wav')
+        self.sound_invader_killed = pygame.mixer.Sound('sounds/invaderkilled.wav')
+        self.sound_explosion = pygame.mixer.Sound('sounds/explosion.wav')
