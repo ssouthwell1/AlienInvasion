@@ -36,11 +36,9 @@ def check_keydown_events(event, ai_settings, screen, ship, bullets):
         ship.moving_left = True
         print("Value after left key down: " + str(ship.moving_left))
     elif event.key == pygame.K_SPACE:
-        if len(bullets) < ai_settings.bullets_allowed:
-            print("Firing new bullet")
-            new_bullet = Bullet(ai_settings, screen, ship)
-            new_bullet.sound_shoot.play()
-            bullets.add(new_bullet)
+        fire_bullet(ai_settings, screen, ship, bullets)
+    elif event.key == pygame.K_q:
+        sys.exit()
 
 
 def check_keyup_events(event, ship):
@@ -55,13 +53,15 @@ def check_keyup_events(event, ship):
         print("Value after left key up: " + str(ship.moving_left))
 
 
-def update_screen(ai_settings, screen, ship, bullets):
-    screen.fill(ai_settings.bg_color)
+def update_screen(ai_settings, screen, ship, alien, bullets):
+    # screen.fill(ai_settings.bg_color)
+    screen.blit(ai_settings.bg_image, [0, 0])
 
     for bullet in bullets.sprites():
         bullet.draw_bullet()
 
     ship.blitme()
+    alien.blitme()
     pygame.display.flip()
 
 
@@ -70,3 +70,11 @@ def update_bullets(bullets):
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
             print(len(bullets))
+
+
+def fire_bullet(ai_settings, screen, ship, bullets):
+    if len(bullets) < ai_settings.bullets_allowed:
+        print("Firing new bullet")
+        new_bullet = Bullet(ai_settings, screen, ship)
+        new_bullet.sound_shoot.play()
+        bullets.add(new_bullet)
