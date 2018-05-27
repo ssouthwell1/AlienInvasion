@@ -29,3 +29,15 @@ class Settings:
         self.sound_explosion = pygame.mixer.Sound('sounds/explosion.wav')
 
         # Alien settings
+        self.alien_width = 55
+        self.alien_height = 65
+        self.available_space_x = self.screenwidth - (4 * self.alien_width)
+        # See about changing the amount of space between each alien later
+        self.number_aliens_x = self.available_space_x - (2 * self.alien_width)
+        self.alien_rows = 4
+        self.alien_columns = 10
+        self.alien_row_x = 200
+        self.alien_row_y = 65
+        self.alien_column_x = 80
+        self.alien_column_y = 65
+        self.alien_speed_factor = 2
