@@ -19,7 +19,7 @@ class Settings:
         self.bullet_height = 15
         # self.bullet_color = 241, 255, 0
         self.bullet_color = 237, 28, 36
-        self.bullets_allowed = 3
+        self.bullets_allowed = 2
 
         # Sound settings
         # refactor later self.sounds = ["shoot", "invaderkilled" "explosion"]

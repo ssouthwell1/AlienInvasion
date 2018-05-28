@@ -73,11 +73,19 @@ def update_screen(ai_settings, screen, ship, aliens, bullets):
     pygame.display.flip()
 
 
-def update_bullets(bullets):
+def update_bullets(ai_settings, bullets, aliens):
     for bullet in bullets:
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
             print(len(bullets))
+    check_collisions(ai_settings, bullets, aliens)
+
+
+def check_collisions(ai_settings, bullets, aliens):
+    aliencollisiondict = pygame.sprite.groupcollide(bullets, aliens, True, False)
+    for values in aliencollisiondict.values():
+        for currentSprite in values:
+            ai_settings.sound_explosion.play()
 
 
 def fire_bullet(ai_settings, screen, ship, bullets):
