@@ -4,13 +4,15 @@ import pygame
 
 from bullet import Bullet
 
-from alien import Alien
+from aliens.alien import Alien
 
-from green_alien import GreenAlien
+from aliens.green_alien import GreenAlien
 
-from red_alien import RedAlien
+from aliens.red_alien import RedAlien
 
-from blue_alien import BlueAlien
+from aliens.blue_alien import BlueAlien
+
+from explosions.explosion import Explosion
 
 
 def check_events(ai_settings, screen, ship, bullets):
@@ -73,19 +75,34 @@ def update_screen(ai_settings, screen, ship, aliens, bullets):
     pygame.display.flip()
 
 
-def update_bullets(ai_settings, bullets, aliens):
+def update_bullets(ai_settings, bullets, aliens, screen):
     for bullet in bullets:
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
             print(len(bullets))
-    check_collisions(ai_settings, bullets, aliens)
+    check_collisions(ai_settings, bullets, aliens, screen)
 
 
-def check_collisions(ai_settings, bullets, aliens):
+def check_collisions(ai_settings, bullets, aliens, screen):
     aliencollisiondict = pygame.sprite.groupcollide(bullets, aliens, True, False)
     for values in aliencollisiondict.values():
-        for currentSprite in values:
+        for current_alien in values:
             ai_settings.sound_explosion.play()
+            if isinstance(current_alien, BlueAlien):
+                # after alien is hit, draw the explosion then remove the alien from the group
+                # current_alien.image = pygame.transform.scale(pygame.image.load('images/blue_explosion.png'),
+                #                                              (ai_settings.alien_width, ai_settings.alien_height))
+                explosion = Explosion(ai_settings, current_alien, screen)
+                aliens.add(explosion)
+                aliens.remove(current_alien)
+            elif isinstance(current_alien, RedAlien):
+                print("Red Alien hit!")
+                aliens.remove(current_alien)
+            elif isinstance(current_alien, GreenAlien):
+                print("Green Alien hit!")
+                current_alien.image = pygame.transform.scale(pygame.image.load('images/green_explosion.png'),
+                                                             (ai_settings.alien_width, ai_settings.alien_height))
+                aliens.remove(current_alien)
 
 
 def fire_bullet(ai_settings, screen, ship, bullets):
@@ -168,3 +185,5 @@ def update_aliens(ai_settings, aliens):
      and then update the positions of all aliens in the fleet"""
     check_fleet_edges(ai_settings, aliens)
     aliens.update()
+
+# def reset_time():

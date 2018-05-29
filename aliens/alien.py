@@ -14,7 +14,7 @@ class Alien(Sprite):
 
         # Add logic for different aliens later
 
-        self.image = pygame.image.load('images/blue_alien.png')
+        self.image = None
         self.images = []
         self.load_images()
         self.index = 0
@@ -23,6 +23,7 @@ class Alien(Sprite):
         self.rect.x = self.rect.width
         self.rect.y = self.rect.height
         self.x = float(self.rect.x)
+        self.time = pygame.time.get_ticks()
 
         # load each for each alien type
         # self.blue_alien = pygame.image.load('images/blue_alien.png')
@@ -34,8 +35,8 @@ class Alien(Sprite):
         self.screen.blit(self.image, self.rect)
 
     def load_images(self):
-        # Refactor this to a list later
-        self.image = pygame.image.load('images/blue_alien.png')
+
+        self.image = pygame.image.load('images/aliens/blue_alien.png')
 
         self.images.append(
             pygame.transform.scale(self.image, (self.ai_settings.alien_width, self.ai_settings.alien_height)))

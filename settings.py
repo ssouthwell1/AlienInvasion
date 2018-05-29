@@ -40,7 +40,14 @@ class Settings:
         self.alien_row_y = 65
         self.alien_column_x = 80
         self.alien_column_y = 65
-        self.alien_speed_factor = 3
+        self.alien_speed_factor = 2
         self.fleet_drop_speed = 10
         # fleet direction of 1 represents right; -1 represents left
         self.fleet_direction = 1
+        self.blue_explosion_image = pygame.image.load('images/blue_explosion.png')
+        self.red_explosion_image = pygame.image.load('images/red_explosion.png')
+        self.green_explosion_image = pygame.image.load('images/blue_explosion.png')
+
+        # Explosion settings
+        self.explosion_width = 40
+        self.explosion_height = 50

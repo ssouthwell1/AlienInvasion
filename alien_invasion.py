@@ -19,6 +19,7 @@ def run_game():
     ship = Ship(ai_settings, screen)
     bullets = Group()
     aliens = Group()
+    explosions = Group()
     # Create the fleet of aliens
     gf.create_fleet(ai_settings, screen, ship, aliens)
     # load background music
@@ -30,7 +31,7 @@ def run_game():
         gf.check_events(ai_settings, screen, ship, bullets)
         ship.update()
         bullets.update()
-        gf.update_bullets(ai_settings, bullets, aliens)
+        gf.update_bullets(ai_settings, bullets, aliens, screen)
         gf.update_aliens(ai_settings, aliens)
         gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 

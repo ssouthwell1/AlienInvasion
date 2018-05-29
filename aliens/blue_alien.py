@@ -1,8 +1,6 @@
 import pygame
 
-from pygame.sprite import Sprite
-
-from alien import Alien
+from aliens.alien import Alien
 
 
 class BlueAlien(Alien):
@@ -10,5 +8,5 @@ class BlueAlien(Alien):
         super(BlueAlien, self).__init__(ai_settings, screen)
         self.screen = screen
         self.ai_settings = ai_settings
-        self.image = pygame.image.load('images/blue_alien.png')
+        self.image = pygame.image.load('images/aliens/blue_alien.png')
         self.image = pygame.transform.scale(self.image, (ai_settings.alien_width, ai_settings.alien_height))
